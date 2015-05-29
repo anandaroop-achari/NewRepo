@@ -1,0 +1,14 @@
+{
+  "name": "ComplaintSystem",
+  "version": "0.0.0",
+  "description": "Complaint registering system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anandaroop Achari",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
