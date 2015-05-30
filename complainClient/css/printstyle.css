@@ -1,0 +1,19 @@
+@page 
+    {
+        size: auto;   /* auto is the initial value */
+        margin: 0mm;  /* this affects the margin in the printer settings */
+    }
+body {
+	font-family: vedana; font-size: 12px; line-height: 10px;
+}
+.panel-heading {background-color:#ccc}
+.main-container .section {margin-bottom: 20px; display: none;}
+.main-container .section .heading { font-size: 25px; font-weight: bold; margin-bottom: 15px; color: #ccc;}
+.main-container .section p {margin-bottom: 15px; font-size: 18px; line-height: 20px;}
+.printButton {display: none;}
+.btn-primary{display:none;}
+.main-container .section.printSection{ display: block;}
+.panel-primary .details.printSection{ display: block;}
+.printSignature{display:block;}
+#OAshowSignature, #CrewshowSignature{display:none;}
+#AICcheklist{overflow-y:auto !important;}

@@ -1,0 +1,572 @@
+html, body {
+    background: #F7F7FA url('../img/background.png');
+/*     padding-top: 50px;        */
+}
+.nopadding {
+   padding: 2px !important;
+   margin: 0 !important;
+}
+
+.modal-dialog {
+   margin: 40px auto;
+}
+
+.dashboard-title {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    padding: 7px;
+    display: inline-block;
+    vertical-align: top
+}
+
+.dashboard-icon {
+    background-image: url('../img/icons.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.dashboard-icon2 {
+    background-image: url('../img/icons2.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+.dashboard-reports, .dashboard-checklist, .dashboard-transport {
+    background-image: url('../img/reports.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-left: 10px;
+    background-position: 0px 5px;
+}
+
+.dashboard-dmreports {
+    background-image: url('../img/dmreport.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-left: 10px;
+    background-position: 0px 5px;
+}
+
+.dashboard-about {
+    background-image: url('../img/About.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-left: 10px;
+    background-position: 0px 5px;
+}
+
+.flightlist-icon {
+    background-image: url('../img/icons1.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.stafflist-icon {
+    background-image: url('../img/personalMsgIcon.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.stafflist-male-icon {
+    background-image: url('../img/male.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.stafflist-female-icon {
+    background-image: url('../img/female.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.job-adhoc-icon{
+	background-image: url('../img/adhoc.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.job-demand-icon{
+	background-image: url('../img/FlightIndependant.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.ajax-spinner-container {
+	background-image: url('../img/ajax-spinner.gif');
+	background-repeat: no-repeat;
+	background-size: 66px;
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    left: 40%;
+    top: 40%;
+    z-index: 100;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.ajax-spinnersmall-container {
+	background-image: url('../img/ajax-spinner.gif');
+	background-repeat: no-repeat;
+	background-size: 15px;
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    padding-left: 16px;
+    z-index: 100;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.btn-login-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/lock_icon.png');
+	padding-left: 16px;
+	background-repeat: no-repeat;
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align:top;
+    display: inline-block;    
+}
+
+.btn-timing-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/clock.png');
+	padding-left: 40px;
+	background-repeat: no-repeat;
+    background-size: 40px;
+    width: 40px;
+    height: 40px;
+    vertical-align:center;
+    display: inline-block;
+    text-align:center;
+        
+}
+.btn-timing-icon_disable{
+	background-image: url('../brasilia/themes/default/img/icons_small/clock_disable.png');
+	padding-left: 40px;
+	background-repeat: no-repeat;
+    background-size: 40px;
+    width: 40px;
+    height: 40px;
+    vertical-align:center;
+    display: inline-block;
+    text-align:center;
+}
+.btn-save-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/save_and_confirm.png');	
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    horizontal-align:center;
+    vertical-align:center;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-savesmall-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/save_and_confirm.png');	
+	background-repeat: no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    horizontal-align:center;
+    vertical-align:center;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-cancel-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/excluded_of_policy.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    horizontal-align:center;
+    vertical-align:center;    
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-delete-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/delete.png');
+	background-repeat: no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-delete-icon-lg{
+	background-image: url('../brasilia/themes/default/img/icons_small/delete.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-addsmall-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/insurance.png');
+	background-repeat: no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-add-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/insurance.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+
+.btn-refresh-icon {
+    background-image: url('../img/refresh.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 0px;
+}
+.btn-refreshsmall-icon {
+    background-image: url('../img/refresh.png');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-checkList-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/check_list.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 45px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-report-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/report.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 45px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-detail-icon{
+	background-image: url('../img/check_list.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 0px;
+}
+
+.btn-searchflight-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/search_01.png');
+	background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 0px;	
+}
+
+.btn-searchflightsmall-icon{
+	background-image: url('../brasilia/themes/default/img/icons_small/search_flight.png');
+	background-repeat: no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left: 0px;	
+}
+.modalBtn-close {
+  color: #aaaaaa;
+  font-size: 20px;
+  text-decoration: none;
+  position: absolute;
+  right: 5px;
+  top: 0;
+}
+.modalBtn-close:hover {
+  color: #919191;
+}
+.modalBtn {
+  background: #428bca;
+  border: #357ebd solid 1px;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 15px;
+  text-decoration: none;
+  text-align: center;
+  min-width: 60px;
+  position: relative;
+  transition: color .1s ease;
+  /* top: 40em;*/
+}
+.modalBtn:hover {
+  background: #357ebd;
+}
+@media (min-width: 801px) {
+	#scanBayNumber {
+		display:none;
+	}
+}
+.overlay {
+	top:0;
+	left:0;
+	right:0;
+	background:#fff;
+	opacity:.5;
+	z-index:600;
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+.content {
+	background:#fff;
+	-webkit-border-radius:0.2em;
+	border:1px solid #dddddd;
+	margin:5px 5px 80px 5px;
+	-webkit-box-shadow: 0 0 6px #dcdcdc
+}
+.content.popUp {
+	background:#fff;
+	-webkit-border-radius:0.2em;
+	border:1px solid #dddddd;
+	margin:5px;
+	-webkit-box-shadow: 0 0 6px #dcdcdc;
+	position:absolute;	
+	z-index:100000;
+	width:90%;
+	border:1px solid #005EB8;
+	/*-webkit-border-radius:4px 4px 0 0;*/
+	top: 30%;
+}
+.content.popUp .header {
+	background:-webkit-gradient(linear, 0 100%, 0 0, from(#005EB8), color-stop(100%, #005EB8));
+	-webkit-box-shadow: 0 0.2em 0.2em #BBB;
+	padding:5px 10px;
+	border-bottom:1px solid #005EB8;
+	/*-webkit-border-radius:0.2em;*/
+	height:auto;
+	color:#fff;
+}
+.popup-header{
+	background:-webkit-gradient(linear, 0 100%, 0 0, from(#005EB8), color-stop(100%, #005EB8));
+	-webkit-box-shadow: 0 0.2em 0.2em #BBB;
+	padding:5px 10px;
+	border-bottom:1px solid #005EB8;
+	/*-webkit-border-radius:0.2em;*/
+	height:auto;
+	color:#fff;
+}
+.freeText {
+	padding:10px;
+	line-height:18px;
+	font-size:120%;
+	font-weight:bold;
+}
+.floatLeft {
+	float:left;
+}
+.floatright {
+	float:right;
+}
+tr.border_bottom td {
+  border-bottom:1pt solid blue;
+}
+
+.btn-submit-icon {
+    background-image: url('../img/submit.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 0px;
+}
+.iconSet {
+    background-image: url("../img/icons4.png");    
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    display: inline-block;
+    height: 20px;width: 30px;
+    position: absolute;     
+}
+.iconSuccess{
+	background-position: 0 0;
+	left: 40px;
+    top: 0;   
+}
+.iconAlert{
+	background-position: 0 -31px;
+	left: 40px;
+    top: 0;   
+}
+.iconAlert-blink{
+	background-image: url("../img/alert.gif");    
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+	display: inline-block;
+    height: 20px;width: 30px;
+    position: absolute; 
+	left: 40px;
+    top: 0;   
+}
+.iconNav{
+	background-image: url("../img/icons4.png");    
+    background-repeat: no-repeat;
+    background-size: 31px auto;
+    display: inline-block;
+    height: 20px;width: 30px;
+}
+.iconAdd{	
+	background-position: 0 -65px;
+	left: 10px;
+    top: 0;   
+}
+.borderR{border-right:1px solid #a6a6a8;}
+ul.list-unstyled li:nth-of-type(even) {
+background: #E5E5E5;
+}
+ul.list-unstyled  li{padding:8px 0;}
+.details>.list-group .list-group-item>span:nth-of-type(1){
+	display:inline-block;
+	width:50%;
+}
+.details>.list-group .list-group-item>span:nth-of-type(1){
+	font-weight:bold;
+	}
+.details>.list-group>.list-group-item {
+   border: none;
+}
+.details>.panel-body,  .details>.panel-body>.panel-body{
+  padding: 15px;
+}
+
+.nospace{margin:0px; padding:0px;}
+.tick .row:nth-child(even), ul.list-unstyled  li:nth-of-type(even){background: #e5e5e5}
+.required{color:#CE0058; font-weight:bold;}
+@media (min-width: 801px) {
+	.details>.list-group li{
+		display:inline-block;
+		padding:10px;
+		width:40%;
+	}
+	.details {
+		display:block;
+	}
+	.btnDesktop{display:block;}
+	
+}
+
+@media (max-width: 801px) {
+	.details>.list-group li:nth-child(even) {background: #E6E6E6}
+	.details {
+		display:none;
+	}
+	.form-padding{padding-top:15px !important;}
+	.marginTop-xs{margin-top:5px;}
+	.btnDesktop{display:none;}
+	#btnEdit{width:100% !important}
+}
+
+.serviceInfoCheckbox {
+	width:3em;
+	height:3em;
+}
+.serviceInfoCheckboxError {
+	width:30px;height:30px;
+	outline: 3px solid #F00;
+	background:transparent;
+    border:0;
+	width:3em;
+	height:3em;
+	border:none;	
+}
+
+.mainbutton_style{
+	float:right;
+	padding:3px 4px;
+}
+
+.bsb-cobrand-logo {    
+    background-image: url('../img/smalllogo.png');
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+}
+.footerNav nav{
+    width:100%; 
+    background: #FFF; 
+    border-top:1px solid #b0acac;
+    box-shadow: 0 0 1em #b0acac;
+    position:fixed;
+    bottom:0px; 
+    z-index:8;
+    background: -moz-linear-gradient(top, #f5f5f5 0%, #d7d7d7 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #d7d7d7));
+    background: -webkit-linear-gradient(top, #f5f5f5 0%, #d7d7d7 100%);
+    }
