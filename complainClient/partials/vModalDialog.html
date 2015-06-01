@@ -1,0 +1,59 @@
+ <div class = "container-fluid">
+        <div class="tab-pane" id="signup">
+            <form class="form-horizontal">
+            <fieldset>
+            <!-- Sign Up Form -->
+        
+            
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="userid">Made By:</label>
+              <div class="controls">
+                <input id="userid" name="userid" class="form-control" type="text" placeholder="JoeSixpack" class="input-large" ng-model="ticket.madeBy" ng-disabled="true">
+              </div>
+            </div>
+                <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="Email">Email:</label>
+              <div class="controls">
+                <input id="Email" name="Email" class="form-control" type="text" placeholder="" class="input-large" ng-model = "ticket.email">
+              </div>
+            </div>
+            <!-- Password input-->
+            <div class="control-group">
+              <label class="control-label" for="notes">Remarks:</label>
+              <div class="controls">
+                <input id="notes" name="notes" class="form-control" type="textarea" class="input-large" ng-model="ticket.note">
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label" for="assignee">Assigned To:</label>
+              <div class="controls">
+                <input id="assignee" class="form-control" name="assignee" type="text" class="input-large" ng-model="ticket.assignedTo" ng-disabled="true">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="status">Status:</label>
+              <div class="controls">
+                <input id="status" class="form-control" name="status" type="text" class="input-large" ng-model="ticket.status">
+              </div>
+            </div>
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="create"></label>
+              <div class="controls">
+                <button id="create" name="create" class="btn btn-success" ng-click="fnCreateTicket()" ng-if="ticket.status === ''">Create Ticket</button>
+                 <button id="create" name="create" class="btn btn-success" ng-click="fnUpdateTicket()" ng-if="ticket.status === 'new'">Update Ticket</button>
+              </div>
+            </div>
+            </fieldset>
+            </form>
+      </div>
+       <div class="modal-footer">
+      <center>
+        
+        </center>
+      </div>
+   </div>
