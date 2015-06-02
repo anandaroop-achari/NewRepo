@@ -26,7 +26,23 @@
             	$location.path('/v_Home');
                     }
                 } else {
-                    $scope.errorMessage = "Wrong Username/Password";
+                    $scope.errorMessage = "User does not exist. Creating New User...";
+                    var userData = {
+                        userId : $scope.strUser,
+                        passWord : $scope.strPwd,
+                        name : '',
+                        email: '',
+                        admin : $scope.isAdmin,
+                        note: ''
+                    }
+                 httpHelper.fnCreateUser(userData, function(data){
+                if(data){
+                        $window.sessionStorage['isAdmin'] = data.admin;
+                        $window.sessionStorage['currentUser'] = JSON.stringify(data);
+                        $location.path('/v_Home');
+                        
+                }
+                    }, function(err){});
                 }
             }, function(){
 

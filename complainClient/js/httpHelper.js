@@ -125,7 +125,25 @@
                     }
                 });
         }
+        httpHelper.fnCreateUser = function(data, successCallback, errorCallback){
+            $http(
+                {
+                    url: 'http://localhost:3000/users/',
+                    method: 'POST',
+                    data: data
+                }
+            ).
+                success(function (data, status, headers) {
+                    if (successCallback) {
+                        successCallback(data);
+                    }
+                }).error(function (data, status, headers, config) {
+                    if (errorCallback) {
+                        errorCallback(data, status, headers, config);
+                    }
+                });
 
+        };
             return httpHelper;
     	}
     ]);
