@@ -2,25 +2,24 @@
         <div class="tab-pane" id="signup">
             <form class="form-horizontal">
             <fieldset>
-            <!-- Sign Up Form -->
-        
-            
-            
-            <!-- Text input-->
             <div class="control-group">
               <label class="control-label" for="userid">Made By:</label>
               <div class="controls">
-                <input id="userid" name="userid" class="form-control" type="text" placeholder="JoeSixpack" class="input-large" ng-model="ticket.madeBy" ng-disabled="true">
+                <input id="userid" name="userid" class="form-control" type="text" class="input-large" ng-model="ticket.madeBy" ng-disabled="true">
               </div>
             </div>
-                <!-- Text input-->
             <div class="control-group">
               <label class="control-label" for="Email">Email:</label>
               <div class="controls">
                 <input id="Email" name="Email" class="form-control" type="text" placeholder="" class="input-large" ng-model = "ticket.email" ng-disabled="isAdmin">
               </div>
             </div>
-            <!-- Password input-->
+             <div class="control-group">
+              <label class="control-label" for="assignee">Title:</label>
+              <div class="controls">
+                <input id="assignee" class="form-control" name="assignee" type="text" class="input-large" ng-model="ticket.title" ng-disabled="isAdmin">
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label" for="notes">Remarks:</label>
               <div class="controls">
@@ -33,7 +32,6 @@
                 <input id="assignee" class="form-control" name="assignee" type="text" class="input-large" ng-model="ticket.assignedTo" ng-disabled="true">
               </div>
             </div>
-            <!-- Text input-->
             <div class="control-group">
               <label class="control-label" for="status">Status:</label>
               <div class="controls">
@@ -48,7 +46,6 @@
                 
               </div>
             </div>
-            <!-- Button -->
             <div class="control-group">
               <label class="control-label" for="create"></label>
               <div class="controls">

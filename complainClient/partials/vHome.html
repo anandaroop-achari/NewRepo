@@ -39,6 +39,12 @@
                 <input id="userid" name="userid" class="form-control" type="text" class="input-large" ng-model="user.name">
               </div>
             </div>
+       <div class="control-group">
+              <label class="control-label" for="userid">Email:</label>
+              <div class="controls">
+                <input id="userid" name="userid" class="form-control" type="text" class="input-large" ng-model="user.email">
+              </div>
+            </div>
      <div class="control-group">
               <label class="control-label" for="userid">Password</label>
               <div class="controls">
@@ -56,7 +62,7 @@
               <div class="controls">
                 <raty id = "rating" ng-model='rating' number="5"></raty>
               </div>
-            </div>
+            </div><br>
              <div class="control-group">
             <div class="controls">
              <button id="submit" name="update" class="btn btn-success" ng-click="fnUpdateUser()">Submit</button>
@@ -67,20 +73,24 @@
        	<div class = "col-xs-7">
        		<div class="panel-primary">
        		<div class="panel-heading">Tickets Issued</div>
-       		<table class = "table table-striped panel-body">
+       		<table class = "table table-striped table-condensed panel-body">
             <th>
               <td>Status</td>
               <td>Remarks</td>
               <td>Updated At</td>
+               <td ng-if = "isAdmin">Assigned To</td>
             </th>
        			<tr ng-repeat="ticket in ticketList" ng-click="fnEditComplain(ticket)" x-lvl-drop-target='true' x-on-drop='fnDrag(dragEl, dropEl)' data-value = "{{ticket._id}}">
 
        				<td ng-show="ticket.status === 'new'"><span class = "iconSet iconAlert"></span></td>
               <td ng-show="ticket.status === 'open'"><span class = "iconSet iconSuccess"></span></td>
-              <td ng-show="ticket.status === 'closed'" style = "opacity : 0.5"><span class = "iconSet iconAlert"></span></td>
-       				<td><span>{{ticket.status}}</span></td>
+              <td ng-show="ticket.status === 'closed'"><span class = "iconSet iconAlert" style = "opacity : 0.5"></span></td>
+       				<td ng-show="ticket.status === 'new'"><span class="label label-primary">New</span></td>
+              <td ng-show="ticket.status === 'open'"><span class="label label-success">Open</span></td>
+              <td ng-show="ticket.status === 'closed'"><span  class="label label-default" style = "opacity : 0.5">Closed</span></td>
        				<td><span>{{ticket.note}}</span></td>
        				<td><span>{{convertDate(ticket.updated_at)}}</span></td>
+              <td><span>{{ticket.assignedTo}}</span></td>
        			</tr>
        		</table>
        	</div>
