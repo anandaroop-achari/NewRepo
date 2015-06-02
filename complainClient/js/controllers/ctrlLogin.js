@@ -16,9 +16,18 @@
             } else {
 
             httpHelper.fnLogin(strUser, strPwd, isAdmin, function(data){
-            	$window.sessionStorage['isAdmin'] = $scope.isAdmin;
+                if(data.length > 0){
+                    if(data[0].admin !== $scope.isAdmin){
+                        $scope.errorMessage = "Not an Admin user"
+                    }
+                else{
+            	$window.sessionStorage['isAdmin'] = data.admin;
                 $window.sessionStorage['currentUser'] = JSON.stringify(data[0]);
             	$location.path('/v_Home');
+                    }
+                } else {
+                    $scope.errorMessage = "Wrong Username/Password";
+                }
             }, function(){
 
             });

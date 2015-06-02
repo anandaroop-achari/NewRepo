@@ -3,14 +3,18 @@
  
     var ngApp = angular.module('ngApp');
 
-    ngApp.registerCtrl('ctrlHome', ['$scope', '$location', '$window','$timeout', 'popups', 'httpHelper', function ($scope, $location, $window, $timeout, popups, httpHelper) {
+    ngApp.registerCtrl('ctrlHome', ['$scope', '$location', '$window','$timeout', 'popups', 'httpHelper','moment', function ($scope, $location, $window, $timeout, popups, httpHelper, moment) {
         $scope.strUser = '';
-        $scope.strPwd = '';
-        $scope.isAdmin=false;
+        $scope.errorMessage = "";
+        $scope.successMessage = "";
         $scope.ticketList = [];
         $scope.user = JSON.parse($window.sessionStorage['currentUser']);
+        $scope.isAdmin= $scope.user.admin;
+        $scope.strPwd = $scope.user.password;
         $scope.notifications = [{}];
+        $scope.rating = $scope.user.rating;
         $scope.update = false;
+        $('#rating').raty();
         $scope.fnNewComplain = function(){
 
             /*Open popup for new Complain*/
@@ -25,10 +29,28 @@
             };
             popups.show($scope.newTicket, $scope.createSuccess);
         };
+        $scope.fnUpdateUser = function(){
+            if($scope.strPwd !== $scope.user.password){
+                $scope.errorMessage = "Wrong Password Entered";
+            } else {
+                var fnScc = function(data){
+                    $scope.successMessage = "User Updated Successfully";
+                    $window.sessionStorage['currentUser'] = JSON.stringify(data);
+                };
+                var fnErr = function(err){
+                    $scope.errorMessage = "Some Error has occurred";
+                }
+                $scope.user.rating = $scope.rating;
+                httpHelper.fnUpdateUser($scope.user, fnScc, fnErr);
+            }
+
+        }
         $scope.fnEditComplain = function(ticket){
             /*Popup for editing existing complain*/
+            if(ticket.status !== 'closed'){
             $scope.update = true;
              popups.show(ticket, $scope.createSuccess);
+         }
         };
         $scope.fnAssignTicket = function(){
             /*For admin select staff for one ticket*/
@@ -39,7 +61,17 @@
         $scope.fnGetTickets = function(){
             var fnScc = function(data){
                 console.log(data);
+                $window.sessionStorage['currentTickets'] = JSON.stringify(data);
                 $scope.ticketList = data;
+                if($scope.isAdmin){
+                    var fnScc1 = function(data){
+                        $scope.staffList = data;
+                    };
+                    var fnErr1 = function(err){
+
+                    };
+                    httpHelper.fnGetStaffs(null, fnScc1, fnErr1);
+                }
                 //delete $scope.fnGetTickets;
             };
             var fnErr = function(err){
@@ -93,9 +125,28 @@
         };
         $scope.convertDate = function(ms){
             var date = new Date(ms);
+            var date1 = moment(date).format("DD/MM/YYYY HH:MM:SS");
+            return(date1.toString());       
+        };
+        $scope.fnDrag = function(dragEl, dropEl){
+          var staff = $('#'+ dragEl).data('value');
+          var ticket = $('#'+ dropEl).data('value');
+          var fnScc = function(data){
 
-            return(date.toString());       
-        }
+          };
+          var fnErr = function(err){
+
+          };
+          for(var v in $scope.ticketList){
+            var tick = $scope.ticketList[v];
+            if(tick._id === ticket && tick.status !== 'closed'){
+                tick.assignedTo = staff;
+                tick.status = 'open';
+                break;
+            }
+          }
+          httpHelper.fnUpdateTicket(tick, fnScc, fnErr);
+        };
     }]);
 
 }());

@@ -21,139 +21,109 @@
             }
         };
     });
-    
-    ngApp.directive('homeTab', function (serverLocation, resourcesPath) {
+   ngApp.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uuid) {
         return {
-            restrict: 'E',
+            restrict: 'A',
             scope: {
-                title: '@',
-                icon: '@',
-                link: '@'
+                onDrop: '&'
             },
-            templateUrl: serverLocation + resourcesPath + 'partials/vHomeTab.html',
-            controller: function ($scope, $location) {
-                $scope.fnNavigate = function () {                	
-                    $location.path($scope.link);
+            link: function(scope, el, attrs, controller) {
+                var id = angular.element(el).attr("id");
+                if (!id) {
+                    id = uuid.new()
+                    angular.element(el).attr("id", id);
                 }
+                            
+                el.bind("dragover", function(e) {
+                    if (e.preventDefault) {
+                      e.preventDefault(); // Necessary. Allows us to drop.
+                  }
+                   
+                  if(e.stopPropagation) { 
+                    e.stopPropagation(); 
+                  }
+ 
+                  e.dataTransfer.dropEffect = 'move';
+                  return false;
+                });
+                 
+                el.bind("dragenter", function(e) {
+                  angular.element(e.target).addClass('lvl-over');
+                });
+                 
+                el.bind("dragleave", function(e) {
+                  angular.element(e.target).removeClass('lvl-over');  // this / e.target is previous target element.
+                });
+ 
+                el.bind("drop", function(e) {
+                  if (e.preventDefault) {
+                    e.preventDefault(); // Necessary. Allows us to drop.
+                  }
+ 
+                  if (e.stopPropogation) {
+                    e.stopPropogation(); // Necessary. Allows us to drop.
+                  }
+ 
+                  var data = e.dataTransfer.getData("text");
+                  var dest = document.getElementById(id);
+                  var src = document.getElementById(data);
+                  scope.onDrop({dragEl: src.id, dropEl: dest.id});
+                });
+ 
+                $rootScope.$on("LVL-DRAG-START", function() {
+                  var el = document.getElementById(id);
+                  angular.element(el).addClass("lvl-target");
+                });
+                 
+                $rootScope.$on("LVL-DRAG-END", function() {
+                  var el = document.getElementById(id);
+                  angular.element(el).removeClass("lvl-target");
+                  angular.element(el).removeClass("lvl-over");
+                });
             }
-        };
-    });
-	
-    ngApp.directive('ufisdate', function () {
+        }
+    }]);
+   ngApp.directive('lvlDraggable', ['$rootScope', 'uuid', function($rootScope, uuid) {
         return {
-            require: "ngModel",
-            link: function (scope, element, attrs, modelCtrl) {
-                modelCtrl.$parsers.push(function (data) {
-                	
-                    // Converts a date into yyyyMMddHHmmss00
-                	return moment(data).format('YYYYMMDDHHmmss00');
-                	
+            restrict: 'A',
+            link: function(scope, el, attrs, controller) {
+                angular.element(el).attr("draggable", "true");
+ 
+                var id = angular.element(el).attr("id");
+                if (!id) {
+                    id = uuid.new()
+                    angular.element(el).attr("id", id);
+                }
+                 
+                el.bind("dragstart", function(e) {
+                    e.dataTransfer.setData('text', id);
+                    $rootScope.$emit("LVL-DRAG-START");
                 });
-
-                modelCtrl.$formatters.push(function (data) {
-                    // Converts yyyyMMddHHmmss00 to date
-                	
-                    if (data) {
-                        var result = moment.utc(data, 'YYYYMMDDHHmmss00');
-                    } else {
-                        result = null;
-                    }
-                    return result.toDate();
-                	
+                 
+                el.bind("dragend", function(e) {
+                    $rootScope.$emit("LVL-DRAG-END");
                 });
             }
-        };
-    });	
-	
-	ngApp.directive('flightTimingCtrl', function(){
-		return {
-			restrict: 'E',
-			template: '<input ng-model="inputValue" style="width:80px" ng-blur="fnBlur(this)" class="form-control input-sm" /><input ng-hide="true" style="width:0px" type="text" value="{{flightDate}}" />',
-			scope: {
-				inputValue: '=',
-				flightDate: '@',
-				saveValue: '&'  
-			},
-			controller:function($scope){
-                $scope.save = function(v){                    
-                    $scope.saveValue({'val' : v});
-                };
-            },
-			link: function (scope) {
-				scope.fnBlur = function(e){
-					console.log("Blur");
-					var strIn = e.inputValue;
-					var vTmpVal = "";
-					if(strIn!==null && strIn!==undefined && strIn.length>0){
-						if(strIn.length>6)
-							vTmpVal = moment(scope.flightDate.substring(0, 8) + strIn.substring(0,4) + scope.flightDate.substring(12, 14), "YYYYMMDDHHmmss").add(strIn.substring(5,7)*1, 'day').format("YYYY-MM-DD HH:mm:ss");
-						else
-							vTmpVal = moment(scope.flightDate.substring(0, 8) + strIn.substring(0,4) + scope.flightDate.substring(12, 14), "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss"); 
-					}
-					
-					scope.save(vTmpVal);
-				};
-				
-				scope.$watch('inputValue', function(newValue, oldValue) {
-					if((newValue===oldValue)||((oldValue===undefined||oldValue===null||oldValue.trim().length===0)&&
-						(newValue===undefined||newValue===null||newValue.trim().length===0))){
-					}else{	
-						console.log("inputValue watcher");
-						if(newValue===undefined||newValue===null||newValue.trim().length==0){
-						}else{
-							var strIn = newValue.trim();
-							var vLen = strIn.length;
-							if(vLen<=4){      
-								var vRx = /[0-9]/g;
-								var vM = strIn.match(vRx);
-								if(vM == null || vM.length<strIn.length)
-									scope.inputValue = oldValue;
-								else{
-									if(vLen<4)
-										strIn = strIn + Array(5-vLen).join('0');
-													   
-									if((strIn.substring(0,2)*1)>23)
-										scope.inputValue = oldValue;
-									else if((strIn.substring(2,4)*1)>59)
-										scope.inputValue = oldValue;
-								}
-							} else if(vLen===5){
-								if(strIn.substring(4,5)!=="/")
-									scope.inputValue = oldValue;
-							} else if(vLen===6){
-								if(strIn.substring(5,6)!=="+" && strIn.substring(5,6)!=="-")
-									scope.inputValue = oldValue;
-							} else if(vLen===7){
-								var vRx = /[0-9]/g;
-								var vM = strIn.substring(6,7).match(vRx);
-								if(vM == null)
-									scope.inputValue = oldValue;
-							} else {
-								scope.inputValue = oldValue;
-							}					
-						}
-					}
-				});
-			}
-		};
-	});
-    
-    ngApp.filter("ufisdate", function () {
-        return function (data) {        	
-			var result;
-			if (data) {
-				result = moment.utc(data, 'YYYYMMDDHHmmss00');
-			} else {
-				result = null;
-			}
-			
-			if(result !== null && result !== undefined)
-				return result.toDate();        
-			
-			return null;
-        };
-    });
+        }
+    }]);
+   ngApp.directive("raty", function() {
+    return {
+        restrict: 'AE',
+        link: function(scope, elem, attrs) {
+            //scope.score = attrs.score;
+            $(elem).raty({score: attrs.ngModel, 
+                            number: attrs.number,
+                            click: function(score, event) {
+                //Set the model value
+                scope.$parent[attrs.ngModel] = score;
 
+                //Apply the changes so that the controller and any $watch on the model will be notified
+                scope.$apply();
+            }
+            });
+        }
+    }
+});
     ngApp.factory('authenticationInterceptor', ['$q', '$location', '$injector',
         function ($q, $location, $injector) {
             var authenticationInterceptor = {

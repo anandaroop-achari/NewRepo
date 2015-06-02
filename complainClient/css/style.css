@@ -11,74 +11,6 @@ html, body {
    margin: 40px auto;
 }
 
-.dashboard-title {
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    padding: 7px;
-    display: inline-block;
-    vertical-align: top
-}
-
-.dashboard-icon {
-    background-image: url('../img/icons.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    margin-left: 10px;
-}
-.dashboard-icon2 {
-    background-image: url('../img/icons2.png');
-    background-repeat: no-repeat;
-    background-size: 40px;
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-}
-.dashboard-reports, .dashboard-checklist, .dashboard-transport {
-    background-image: url('../img/reports.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    margin-left: 10px;
-    background-position: 0px 5px;
-}
-
-.dashboard-dmreports {
-    background-image: url('../img/dmreport.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    margin-left: 10px;
-    background-position: 0px 5px;
-}
-
-.dashboard-about {
-    background-image: url('../img/About.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    margin-left: 10px;
-    background-position: 0px 5px;
-}
-
-.flightlist-icon {
-    background-image: url('../img/icons1.png');
-    background-repeat: no-repeat;
-    background-size: 50px;
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-    margin-left: 10px;
-}
 
 .stafflist-icon {
     background-image: url('../img/personalMsgIcon.png');
@@ -89,7 +21,17 @@ html, body {
     display: inline-block;
     margin-left: 10px;
 }
+.logout-icon {
+background-image: url('../img/logout.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-left: 10px;
+     margin-top: 15px;
 
+}
 .stafflist-male-icon {
     background-image: url('../img/male.png');
     background-repeat: no-repeat;
@@ -415,12 +357,12 @@ tr.border_bottom td {
 }
 .iconSuccess{
 	background-position: 0 0;
-	left: 40px;
+	left: 10px;
     top: 0;   
 }
 .iconAlert{
 	background-position: 0 -31px;
-	left: 20px;
+	left: 10px;
     top: 0;   
 }
 .iconAlert-blink{
@@ -590,5 +532,16 @@ ul.list-unstyled  li{padding:8px 0;}
  background:#ccc;
  border-radius:4px;
  }
-
+.lvl-over {
+    border: 0px;
+  }
+ 
+  .lvl-target {
+    background-color: #ddd; 
+    opacity: .5;
+  }
+ 
+  [draggable] {
+    cursor: move;
+  }
 

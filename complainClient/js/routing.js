@@ -13,10 +13,10 @@
             }
         });
         $routeProvider.when('/v_logout', {
-            templateUrl: serverLocation + resourcesPath + 'partials/vLogout.html',
+            templateUrl: serverLocation + resourcesPath + 'partials/vLogin.html',
             resolve: {
                 loadController: function ($q, $rootScope) {
-                    return loadController($q, $rootScope, serverLocation + resourcesPath + 'js/controllers/ctrlLogout.js');
+                    return loadController($q, $rootScope, serverLocation + resourcesPath + 'js/controllers/ctrlLogin.js');
                 }
             }
         });

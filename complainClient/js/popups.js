@@ -22,7 +22,6 @@
             dialogScope.ticket = ticket;
             dialogScope.submit = function(result){
                 $modal.close(result);
-                alert("");
                 onConfirm(result);
               };
            
@@ -57,7 +56,41 @@
                 onConfirm(res);
 			};
         };
+        popups.editTicket = function(ticket, onConfirm, onCancel){
+             var dialogScope = $rootScope.$new();
+            dialogScope.ticket = ticket;
+            dialogScope.submit = function(result){
+                $modal.close(result);
+                onConfirm(result);
+              };
+           
+            popups.error = [];
+            popups.complete = false;
+            var editTick = $modal.open( 
+                {
+                    templateUrl: serverLocation + resourcesPath + 'partials/vEditTicket.html',
+                    controller: 'ctrlEditTicket',
+                    //backdrop: 'static',
+                    keyboard: 'false',
+                    resolve:{
+                        loadController :  function($q, $rootScope){
+                             var deferred = $q.defer();
+                                var dependencies =
+                                    $script([serverLocation + resourcesPath + 'js/controllers/ctrlEditTicket.js'], function () {
+                                        // all dependencies have now been loaded by $script.js so resolve the promise
+                                        $rootScope.$apply(function () {
+                                            deferred.resolve();
+                                        });
+                                    });
 
+                                return deferred.promise;
+                        }
+                    },
+                    scope: dialogScope
+                }
+            );
+
+        }
         return popups;
     });
 }());

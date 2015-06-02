@@ -31,6 +31,15 @@ router.post('/authentication', function(req, res, next){
   	res.json(post);
 	})
 });
+router.post('/update', function(req, res, next){
+  console.log(req.body);
+  User.findOneAndUpdate({'_id' : req.body._id}, req.body, function(err, post){
+  if(err) return next(err);
+ 
+    console.log('successfully updated!');
+    res.json(post);
+  })
+});
 router.post('/staff', function(req, res, next){
 	console.log(req.body);
 	Staff.create(req.body, function(err, post){

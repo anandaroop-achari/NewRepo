@@ -17,14 +17,14 @@
             <div class="control-group">
               <label class="control-label" for="Email">Email:</label>
               <div class="controls">
-                <input id="Email" name="Email" class="form-control" type="text" placeholder="" class="input-large" ng-model = "ticket.email">
+                <input id="Email" name="Email" class="form-control" type="text" placeholder="" class="input-large" ng-model = "ticket.email" ng-disabled="isAdmin">
               </div>
             </div>
             <!-- Password input-->
             <div class="control-group">
               <label class="control-label" for="notes">Remarks:</label>
               <div class="controls">
-                <input id="notes" name="notes" class="form-control" type="textarea" class="input-large" ng-model="ticket.note">
+                <textarea id="notes" name="notes" class="form-control" type="textarea" class="input-large" ng-model="ticket.note" ng-disabled="isAdmin"></textarea>
               </div>
             </div>
              <div class="control-group">
@@ -37,7 +37,15 @@
             <div class="control-group">
               <label class="control-label" for="status">Status:</label>
               <div class="controls">
-                <input id="status" class="form-control" name="status" type="text" class="input-large" ng-model="ticket.status">
+                <input id="status" class="form-control" name="status" type="text" class="input-large" ng-model="ticket.status"
+                ng-disabled="true">
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label" for="status">Admin Remarks:</label>
+              <div class="controls">
+                <textarea id="adRemarks" class="form-control" name="adRemarks" type="text" class="input-large" ng-model="ticket.adminRemarks" ng-disabled="!isAdmin"></textarea>
+                
               </div>
             </div>
             <!-- Button -->
@@ -45,7 +53,9 @@
               <label class="control-label" for="create"></label>
               <div class="controls">
                 <button id="create" name="create" class="btn btn-success" ng-click="fnCreateTicket()" ng-if="ticket.status === ''">Create Ticket</button>
-                 <button id="create" name="create" class="btn btn-success" ng-click="fnUpdateTicket()" ng-if="ticket.status === 'new'">Update Ticket</button>
+                 <button id="update" name="update" class="btn btn-success" ng-click="fnUpdateTicket()" ng-if="ticket.status === 'new'">Update Ticket</button>
+                 <button id="update" name="update" class="btn btn-success" ng-click="fnUpdateTicket()" ng-if="ticket.status === 'open'">Update Ticket</button>
+                 <button id="close" name="close" class="btn btn-success" ng-click="fnCloseTicket()" ng-if="ticket.status === 'open'" ng-show = "isAdmin">Close Ticket</button>
               </div>
             </div>
             </fieldset>

@@ -1,38 +1,83 @@
 <div ng-controller="ctrlHome" style="!important" >
     <loginheader title="Complain Registration" show-menu="true" show-job-menu="false"></loginheader>
     <div class="container-fluid" ng-init="fnGetTickets()">
+      <div class="alert alert-danger alert-dismissible" ng-if="errorMessage" role="alert">
+                    {{errorMessage}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>  
+        <div class="alert alert-success alert-dismissible" ng-if="successMessage" role = "alert">{{successMessage}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
        <div class = "row container-fluid">
-       	<div class = "col-xs-5 panel">
-       		<table class = "table">
-       			<tr class = "row">
-       				<td class = "col-xs-5"><span class = "stafflist-male-icon"></span></td>
-       				<td class = "col-xs-7"><span class = "center-block">{{user.name}}</span></td>
-       			</tr>
-       			<tr>
-       				<table class = "table-striped">
-       					<tr ng-repeat="notification in notifications">
-       						 <a class="content" href="#">
-      
-       <div class="notification-item">
-        <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
-        <p class="item-info">Marketing 101, Video Assignment</p>
-      </div>
-       
-    </a>
+       	<div class = "col-xs-5">
+       			<div class = "row">
+       				<div class = "col-xs-5">
+                <span class = "stafflist-male-icon" ng-show="!isAdmin"></span>
+                <span class = "stafflist-icon" ng-show="isAdmin"></span>
+              </div>
+       				<div class = "col-xs-7" ng-if="!isAdmin"><span class = "center-block">{{user.name}}</div>
+              <div class = "col-xs-7" ng-if="isAdmin"><span class = "center-block">Admin</div>
+       		
+       		</div>
+          <div class =  "panel">
 
-       					</tr>
+           <div class="list-group" ng-if="isAdmin">
+            <div class = "list-group-item active">Staff List</div>
+        <div ng-repeat="staff in staffList" class = "list-group-item" x-lvl-draggable='true' data-value="{{staff.staffId}}" data-toggle = "tooltip" title = "Drag and Drop into a ticket to assign">
 
-       				</table>
-       			</tr>
-       		</table>
+            <span>
+                <a href="#">{{staff.name}}</a>
+                </a>
+            </span>       
+        </div>
+    </div></div>
+    <div class = "list-group" ng-if="!isAdmin">
+      <div class = "list-group-item active">User Info</div>
+      <div class="control-group">
+              <label class="control-label" for="userid">Name:</label>
+              <div class="controls">
+                <input id="userid" name="userid" class="form-control" type="text" class="input-large" ng-model="user.name">
+              </div>
+            </div>
+     <div class="control-group">
+              <label class="control-label" for="userid">Password</label>
+              <div class="controls">
+                <input id="pwd" name="pwd" class="form-control" type="password" class="input-large" ng-model="user.passWord">
+              </div>
+            </div>
+    <div class="control-group">
+              <label class="control-label" for="userid">Re-type Password</label>
+              <div class="controls">
+                <input id="strpwd" name="strpwd" class="form-control" type="password" class="input-large" ng-bind="strPwd">
+              </div>
+            </div>
+      <div class="control-group">
+              <label class="control-label" for="userid">Rate Us</label>
+              <div class="controls">
+                <raty id = "rating" ng-model='rating' number="5"></raty>
+              </div>
+            </div>
+             <div class="control-group">
+            <div class="controls">
+             <button id="submit" name="update" class="btn btn-success" ng-click="fnUpdateUser()">Submit</button>
+           </div>
+         </div>
+    </div>
        	</div>
        	<div class = "col-xs-7">
        		<div class="panel-primary">
        		<div class="panel-heading">Tickets Issued</div>
        		<table class = "table table-striped panel-body">
-       			<tr ng-repeat="ticket in ticketList" ng-click="fnEditComplain(ticket)">
+            <th>
+              <td>Status</td>
+              <td>Remarks</td>
+              <td>Updated At</td>
+            </th>
+       			<tr ng-repeat="ticket in ticketList" ng-click="fnEditComplain(ticket)" x-lvl-drop-target='true' x-on-drop='fnDrag(dragEl, dropEl)' data-value = "{{ticket._id}}">
 
-       				<td><span class = "iconSet iconAlert"></span></td>
+       				<td ng-show="ticket.status === 'new'"><span class = "iconSet iconAlert"></span></td>
+              <td ng-show="ticket.status === 'open'"><span class = "iconSet iconSuccess"></span></td>
+              <td ng-show="ticket.status === 'closed'" style = "opacity : 0.5"><span class = "iconSet iconAlert"></span></td>
        				<td><span>{{ticket.status}}</span></td>
        				<td><span>{{ticket.note}}</span></td>
        				<td><span>{{convertDate(ticket.updated_at)}}</span></td>
@@ -42,7 +87,7 @@
        </div>
        </div>
     </div>
-    <footer class="footerNav">
+    <footer class="footerNav" ng-if="!isAdmin">
         <nav>
             <div class="col-xs-12 col-md-12 pull-left btn" ng-click="fnNewComplain()">New Complaint</div>
         </nav>

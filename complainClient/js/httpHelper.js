@@ -9,7 +9,7 @@
     	httpHelper.fnLogin = function (username, password, isAdmin, successCallback, errorCallback) {
     		$http(
                 {
-                    url: 'http://192.168.0.2:3000/users/authentication/',
+                    url: 'http://localhost:3000/users/authentication/',
                     method: 'POST',
                     data: {
                         username: username,
@@ -37,7 +37,7 @@
             }
             $http(
                 {
-                    url: 'http://192.168.0.2:3000/complains/',
+                    url: 'http://localhost:3000/complains/',
                     method: 'GET',
                     params: params
                 }
@@ -55,7 +55,7 @@
          httpHelper.fnCreateTicket = function(data, successCallback, errorCallback){
             $http(
                 {
-                    url: 'http://192.168.0.2:3000/complains/',
+                    url: 'http://localhost:3000/complains/',
                     method: 'POST',
                     data: data
                 }
@@ -73,7 +73,44 @@
         httpHelper.fnUpdateTicket = function(data, successCallback, errorCallback){
             $http(
                 {
-                    url: 'http://192.168.0.2:3000/complains/update',
+                    url: 'http://localhost:3000/complains/update',
+                    method: 'POST',
+                    data: data
+                }
+            ).
+                success(function (data, status, headers) {
+                    if (successCallback) {
+                        successCallback(data);
+                    }
+                }).error(function (data, status, headers, config) {
+                    if (errorCallback) {
+                        errorCallback(data, status, headers, config);
+                    }
+                });
+        };
+        httpHelper.fnGetStaffs = function(param, successCallback, errorCallback){
+             $http(
+                {
+                    url: 'http://localhost:3000/users/getStaff',
+                    method: 'GET',
+                    params: null
+                }
+            ).
+                success(function (data, status, headers) {
+                    if (successCallback) {
+                        successCallback(data);
+                    }
+                }).error(function (data, status, headers, config) {
+                    if (errorCallback) {
+                        errorCallback(data, status, headers, config);
+                    }
+                });
+        };
+        httpHelper.fnUpdateUser = function(data, successCallback, errorCallback){
+
+            $http(
+                {
+                    url: 'http://localhost:3000/users/update/',
                     method: 'POST',
                     data: data
                 }

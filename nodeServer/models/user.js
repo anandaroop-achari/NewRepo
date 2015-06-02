@@ -6,6 +6,7 @@ var UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   admin: Boolean,
+  rating: {type : Number, default : 0},
   note: String,
   complains : { type: [complain], default: []},
 });
